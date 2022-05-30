@@ -13,8 +13,20 @@ export default new Vuex.Store({
     user: {},
     authStatus: false,
   },
-  getters: {},
-  mutations: {},
+  getters: {
+    isAuthenticated: (state) => !!state.token,
+    authStatus: (state) => state.authStatus,
+    user: (state) => state.user,
+  },
+  mutations: {
+    SET_TOKEN(state, token) {
+      state.token = token;
+    },
+    LOGIN_USER(state, user) {
+      state.authStatus = true;
+      state.user = { ...user };
+    },
+  },
   actions: {},
   modules: {},
 });
