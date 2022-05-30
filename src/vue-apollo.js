@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueApollo from "vue-apollo";
-import { setContext } from 'apollo-link-context'
+import { setContext } from "apollo-link-context";
 import {
   createApolloClient,
   restartWebsockets,
@@ -14,8 +14,20 @@ const AUTH_TOKEN = "apollo-token";
 
 // Http endpoint
 const httpEndpoint =
-  process.env.VUE_APP_GRAPHQL_HTTP || "https://simplicityhw.cotunnel.com/graphql";
+  process.env.VUE_APP_GRAPHQL_HTTP ||
+  "https://simplicityhw.cotunnel.com/graphql";
 
+const authLink = setContext(async (_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = JSON.parse(localStorage.getItem("apollo-token"));
+  // Return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token || "",
+    },
+  };
+});
 // Config
 const defaultOptions = {
   // You can use `https` for secure connection (recommended in production)
@@ -32,6 +44,8 @@ const defaultOptions = {
   websocketsOnly: false,
   // Is being rendered on the server?
   ssr: false,
+
+  link: authLink,
 
   // Override default apollo link
   // note: don't override httpLink here, specify httpLink options in the
@@ -52,33 +66,21 @@ const defaultOptions = {
 };
 
 // Call this in the Vue app file
-export function createProvider(options = {}) {
-  // Create apollo client
-  const { apolloClient, wsClient } = createApolloClient({
-    ...defaultOptions,
-    ...options,
-  });
-  apolloClient.wsClient = wsClient;
-
+export function createProvider () {
   // Create vue apollo provider
   const apolloProvider = new VueApollo({
     defaultClient: apolloClient,
     defaultOptions: {
       $query: {
-        // fetchPolicy: 'cache-and-network',
-      },
+        fetchPolicy: 'cache-and-network'
+      }
     },
-    errorHandler(error) {
+    errorHandler (error) {
       // eslint-disable-next-line no-console
-      console.log(
-        "%cError",
-        "background: red; color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold;",
-        error.message
-      );
-    },
-  });
-
-  return apolloProvider;
+      console.log('%cError', 'background: red; color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold;', error.message)
+    }
+  })
+  return apolloProvider
 }
 
 // Manually call this when user log in
