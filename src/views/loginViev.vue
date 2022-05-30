@@ -33,7 +33,14 @@ export default {
     };
   },
   methods: {
-    loginUser: function () {},
+    methods: {
+      ...mapActions(["login"]),
+      loginUser() {
+        this.login(this.authDetails).then(() =>
+          this.$router.push("/dashboard")
+        );
+      },
+    },
   },
 };
 </script>
