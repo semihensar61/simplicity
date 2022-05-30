@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueApollo from "vue-apollo";
+import { setContext } from 'apollo-link-context'
 import {
   createApolloClient,
   restartWebsockets,
@@ -13,7 +14,7 @@ const AUTH_TOKEN = "apollo-token";
 
 // Http endpoint
 const httpEndpoint =
-  process.env.VUE_APP_GRAPHQL_HTTP || "http://localhost:4000/graphql";
+  process.env.VUE_APP_GRAPHQL_HTTP || "https://simplicityhw.cotunnel.com/graphql";
 
 // Config
 const defaultOptions = {
