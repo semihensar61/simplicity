@@ -4,6 +4,9 @@
     <div v-if="authStatus" id="nav">
       <div>{{ user.name }}</div>
     </div>
+    <div v-else>
+      <router-view></router-view>
+    </div>
   </header>
 </template>
 <script>
