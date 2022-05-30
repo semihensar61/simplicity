@@ -6,6 +6,21 @@
     </div>
   </header>
 </template>
+<script>
+import { mapGetters } from 'vuex'
+
+export default {
+  name: "app",
+  data() {
+    return {
+
+    };
+  },
+  computed: {
+     ...mapGetters(["authStatus"]),
+  }
+};
+</script>
 
 <style>
 #app {

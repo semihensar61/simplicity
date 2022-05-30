@@ -1,4 +1,4 @@
-import gql from 'graphql-tag'
+import gql from "graphql-tag";
 
 export const LOGGED_IN_USER = gql`
   query {
@@ -6,4 +6,4 @@ export const LOGGED_IN_USER = gql`
       e
     }
   }
-`
+`;

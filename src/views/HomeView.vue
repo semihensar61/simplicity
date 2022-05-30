@@ -1,24 +1,15 @@
 <template>
-<template>
   <div class="home">
-    <main>
-      authed
-    </main>
+    <main>authed</main>
   </div>
 </template>
 
 <script>
-
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 export default {
-  name: 'Home',
-  components: {
-  },
+  name: "Home",
   computed: {
-
+    ...mapGetters(["user"]),
   },
-    computed: {
-    ...mapGetters(['user'])
-  }
-}
+};
 </script>

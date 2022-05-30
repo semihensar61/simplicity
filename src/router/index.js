@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import store from '../store'
 
 Vue.use(VueRouter);
 
@@ -11,10 +12,10 @@ const routes = [
     component: HomeView,
   },
   {
-    path: '/dashboard',
-    name: 'Home',
-    component: () => import('@/views/Home.vue'),
-    meta: { requiresAuth: true }
+    path: "/dashboard",
+    name: "Home",
+    component: () => import("@/views/HomeView.vue"),
+    meta: { requiresAuth: true },
   },
   {
     path: "/login",
@@ -23,7 +24,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/login.vue"),
+      import(/* webpackChunkName: "about" */ "../views/loginView.vue"),
   },
 ];
 
@@ -35,20 +36,20 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   // Check if the user is logged i
-const isUserLoggedIn = store.getters.isAuthenticated
-if (to.matched.some(record => record.meta.requiresAuth)) {
-  if (!isUserLoggedIn) {
-    store.dispatch('logOut')
-    next({
-      path: '/login',
-      query: { redirect: to.fullPath }
-    })
+  const isUserLoggedIn = store.getters.isAuthenticated;
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (!isUserLoggedIn) {
+      store.dispatch("logOut");
+      next({
+        path: "/login",
+        query: { redirect: to.fullPath },
+      });
+    } else {
+      next();
+    }
   } else {
-    next()
+    next();
   }
-} else {
-  next()
-}
-})
+});
 
 export default router;
