@@ -1,11 +1,11 @@
 <template>
-<header class="header">
-  <div class="app-name">Blogr</div>
+  <header class="header">
+    <div class="app-name">Blogr</div>
     <div v-if="authStatus" id="nav">
-      <div>{{user.name}}</div>
-      <button class="auth-button" @click="logOut" > Log Out</button>
+      <div>{{ user.name }}</div>
+      <button class="auth-button" @click="logOut">Log Out</button>
     </div>
-</header>
+  </header>
 </template>
 
 <style>
