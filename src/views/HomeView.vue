@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <main>authed</main>
+    <div>{{this.orders}}</div>
   </div>
 </template>
 
@@ -9,7 +10,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "Home",
   computed: {
-    ...mapGetters(["user"]),
+    ...mapGetters(["user", "orders", "restaurants"]),
   },
   mounted() {
     this.$store.dispatch("setUserOrders")
