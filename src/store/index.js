@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import { apolloClient } from "@/vue-apollo";
-import { LOGGED_IN_USER } from "@/graphql/queries";
+import { LOGGED_IN_USER, USER_ORDERS } from "@/graphql/queries";
 import { LOGIN_USER, REGISTER_USER } from "@/graphql/mutations";
 
 Vue.use(Vuex);
@@ -20,6 +20,7 @@ export default new Vuex.Store({
   },
   mutations: {
     SET_TOKEN(state, token) {
+      console.log("tokends", token)
       state.token = token;
     },
     LOGIN_USER(state, user) {
@@ -46,6 +47,11 @@ export default new Vuex.Store({
       const { data } = await apolloClient.query({ query: LOGGED_IN_USER });
       commit("LOGIN_USER", data.me);
     },
+    async setUserOrders({commit}) {
+      console.log("asdads")
+      const {data} = await apolloClient.query({query: USER_ORDERS});
+      console.log(data)
+    }
   },
   modules: {},
 });

@@ -11,5 +11,8 @@ export default {
   computed: {
     ...mapGetters(["user"]),
   },
+  mounted() {
+    this.$store.dispatch("setUserOrders")
+  }
 };
 </script>
