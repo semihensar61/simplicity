@@ -1,12 +1,5 @@
 <template>
-  <header class="header">
-    <div v-if="authStatus" id="nav">
-      <div>{{ user.name }}</div>
-    </div>
-    <div v-else>
-      <router-view></router-view>
-    </div>
-  </header>
+  <router-view></router-view>
 </template>
 <script>
 import { mapGetters } from 'vuex'

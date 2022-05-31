@@ -3,6 +3,7 @@
     <div class="container">
       <h4><b>{{this.user.firstName}}{{this.user.lastName}}</b></h4>
       <p>{{this.user.email}}</p>
+      <button @click="logout">Log Out</button>
     </div>
   </div>
 </template>
@@ -15,6 +16,12 @@ export default {
   computed: {
     ...mapGetters(["user"]),
   },
+  methods:{
+      logout() {
+          this.$store.dispatch("logOut")
+          this.$router.push("/login")
+      }
+  }
 };
 </script>
 <style scoped>

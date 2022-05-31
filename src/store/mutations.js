@@ -12,5 +12,10 @@ export default {
   },
   SET_RESTAURANTS(state, restaurants) {
     state.restaurants = restaurants
+  },
+  LOGOUT_USER (state) {
+    console.log("logout user")
+    state.authStatus = ''
+    state.token = '' && localStorage.removeItem('apollo-token')
   }
 };

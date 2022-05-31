@@ -39,4 +39,8 @@ export default {
     commit("SET_RESTAURANTS", data.restaurants);
     console.log(data);
   },
+  async logOut ({ commit, dispatch }) {
+    console.log("logıut")
+    commit('LOGOUT_USER')
+  }
 };

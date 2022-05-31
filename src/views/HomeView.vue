@@ -33,6 +33,9 @@ export default {
     user,
     restaurants,
   },
+  mounted() {
+    this.$store.dispatch("setUser")
+  },
   methods: {
     openTab(tabName) {
       var i;
