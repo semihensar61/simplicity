@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <main>authed</main>
+    <div class="user"><user /></div>
     <orders />
   </div>
 </template>
@@ -9,16 +9,25 @@
 import { mapGetters } from "vuex";
 
 import orders from "../components/orders.vue"
+import user from "../components/user.vue"
 export default {
   name: "Home",
   computed: {
-    ...mapGetters(["user", "restaurants"]),
+    ...mapGetters(["restaurants"]),
   },
   components:{
-    orders
+    orders,
+    user
   },
   mounted() {
     this.$store.dispatch("setRestaurants")
   }
 };
 </script>
+<style scoped>
+.user{
+  text-align: -webkit-center;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+</style>

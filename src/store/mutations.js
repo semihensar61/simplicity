@@ -5,6 +5,7 @@ export default {
   LOGIN_USER(state, user) {
     state.authStatus = true;
     state.user = { ...user };
+    console.log("USER", state.user)
   },
   SET_ORDERS(state, orders) {
     state.orders = orders

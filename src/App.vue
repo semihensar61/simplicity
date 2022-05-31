@@ -1,6 +1,5 @@
 <template>
   <header class="header">
-    <div class="app-name">Blogr</div>
     <div v-if="authStatus" id="nav">
       <div>{{ user.name }}</div>
     </div>
