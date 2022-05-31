@@ -19,7 +19,6 @@ export default {
   },
   async setUser({ commit }) {
     const { data } = await apolloClient.query({ query: LOGGED_IN_USER });
-    console.log("USER==>", data);
     commit("LOGIN_USER", data.user);
   },
   async setUserOrders({ commit }, index) {
@@ -27,20 +26,16 @@ export default {
       query: USER_ORDERS,
       variables: { limit: 10, index: index },
     });
-    console.log("ORDERS", data.pastOrders)
     commit("SET_ORDERS", data.pastOrders);
   },
   async setRestaurants({ commit }) {
-    console.log("asdads");
     const { data } = await apolloClient.query({
       query: RESTAURANT_QUERY,
       variables: { limit: 10, index: 0 },
     });
     commit("SET_RESTAURANTS", data.restaurants);
-    console.log(data);
   },
   async logOut ({ commit, dispatch }) {
-    console.log("logıut")
     commit('LOGOUT_USER')
   }
 };
