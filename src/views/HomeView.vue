@@ -1,19 +1,23 @@
 <template>
   <div class="home">
     <main>authed</main>
-    <div>{{this.orders}}</div>
+    <orders />
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+
+import orders from "../components/orders.vue"
 export default {
   name: "Home",
   computed: {
-    ...mapGetters(["user", "orders", "restaurants"]),
+    ...mapGetters(["user", "restaurants"]),
+  },
+  components:{
+    orders
   },
   mounted() {
-    this.$store.dispatch("setUserOrders")
     this.$store.dispatch("setRestaurants")
   }
 };

@@ -22,11 +22,12 @@ export default {
     console.log("USER==>", data);
     commit("LOGIN_USER", data.user);
   },
-  async setUserOrders({ commit }) {
+  async setUserOrders({ commit }, index) {
     const { data } = await apolloClient.query({
       query: USER_ORDERS,
-      variables: { limit: 10, index: 0 },
+      variables: { limit: 10, index: index },
     });
+    console.log("ORDERS", data.pastOrders)
     commit("SET_ORDERS", data.pastOrders);
   },
   async setRestaurants({ commit }) {

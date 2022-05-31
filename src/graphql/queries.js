@@ -16,10 +16,13 @@ export const LOGGED_IN_USER = gql`
 export const USER_ORDERS = gql`
   query orders($limit:Int!, $index:Int!) {
     pastOrders(limit: $limit, index: $index) {
+      uid
+      orderDate
       items {
         id
         name
         description
+        quantity
       }
       restaurant {
         name
