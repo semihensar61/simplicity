@@ -1,25 +1,32 @@
 import gql from "graphql-tag";
 
 export const LOGGED_IN_USER = gql`
-query user{
+  query user {
     user {
       firstName
       lastName
       email
-      addresses{
+      addresses {
         postalCode
       }
     }
   }
 `;
 
-
-export const USER_ORDERS = gql `
-query orders{
-    pastOrders(limit:10, index:0,) {
+export const USER_ORDERS = gql`
+  query orders {
+    pastOrders(limit: 10, index: 0) {
       items {
         id
       }
+    }
+  }
+`;
+
+export const RESTAURANT_QUERY = gql`
+  query restaurant {
+    restaurant(restaurantUid: "qhrkeg", delivery: true) {
+      name
     }
   }
 `;
