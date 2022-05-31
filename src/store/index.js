@@ -2,8 +2,8 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import { apolloClient } from "@/vue-apollo";
-import { LOGGED_IN_USER, USER_ORDERS } from "@/graphql/queries";
-import { LOGIN_USER, REGISTER_USER } from "@/graphql/mutations";
+import { LOGGED_IN_USER, USER_ORDERS, RESTAURANT_QUERY } from "@/graphql/queries";
+import { LOGIN_USER} from "@/graphql/mutations";
 
 Vue.use(Vuex);
 
@@ -50,7 +50,14 @@ export default new Vuex.Store({
     },
     async setUserOrders({commit}) {
       console.log("asdads")
-      const {data} = await apolloClient.query({query: USER_ORDERS});
+      const {data} = await apolloClient.query({query: USER_ORDERS, variables:{limit:10, index:0}}
+      );
+      console.log(data)
+    },
+    async setRestaurants({commit}) {
+      console.log("asdads")
+      const {data} = await apolloClient.query({query: RESTAURANT_QUERY, variables:{limit:10, index:0}}
+      );
       console.log(data)
     }
   },

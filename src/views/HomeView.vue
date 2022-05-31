@@ -13,6 +13,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("setUserOrders")
+    this.$store.dispatch("setRestaurants")
   }
 };
 </script>
