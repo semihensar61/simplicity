@@ -45,7 +45,8 @@ export default new Vuex.Store({
     },
     async setUser({ commit }) {
       const { data } = await apolloClient.query({ query: LOGGED_IN_USER });
-      commit("LOGIN_USER", data.me);
+      console.log("USER==>", data)
+      commit("LOGIN_USER", data.user);
     },
     async setUserOrders({commit}) {
       console.log("asdads")

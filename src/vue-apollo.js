@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueApollo from "vue-apollo";
 import { setContext } from "apollo-link-context";
+import { ApolloLink, concat, split } from "apollo-link";
 import {
   createApolloClient,
   restartWebsockets,
@@ -17,17 +18,16 @@ const httpEndpoint =
   process.env.VUE_APP_GRAPHQL_HTTP ||
   "https://simplicityhw.cotunnel.com/graphql";
 
-const authLink = setContext(async (_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  const token = JSON.parse(localStorage.getItem("apollo-token"));
-  console.log("TOKEN", token)
-  // Return the headers to the context so httpLink can read them
-  return {
+const authLink = new ApolloLink((operation, forward) => {
+  // add the authorization to the headers
+const token = localStorage.getItem('apollo-token');
+console.log("TOKEN", token)
+  operation.setContext({
     headers: {
-      ...headers,
-      authorization: token || "",
+      authorization: token ? `Bearer ${token}` : "",
     },
-  };
+  });
+  return forward(operation);
 });
 // Config
 const defaultOptions = {
