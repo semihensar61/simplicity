@@ -24,8 +24,8 @@ export const USER_ORDERS = gql`
 `;
 
 export const RESTAURANT_QUERY = gql`
-  query restaurant {
-    restaurant(restaurantUid: "qhrkeg", delivery: true) {
+  query restaurants {
+    restaurants(index:0, limit:10, delivery:false) {
       name
     }
   }
