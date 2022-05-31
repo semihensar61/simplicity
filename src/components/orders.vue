@@ -13,7 +13,7 @@
       </tr>
     </table>
     <div class="buttons">
-      <button @click="back()">&laquo;</button>page:{{ index + 1
+      <button :disabled="this.index===0" @click="back()">&laquo;</button>page:{{ index + 1
       }}<button @click="next()">&raquo;</button>
     </div>
   </div>
@@ -36,7 +36,8 @@ export default {
   },
   methods: {
     back() {
-      this.$store.dispatch("setUserOrders");
+    this.index = this.index-1;
+      this.$store.dispatch("setUserOrders", this.index);
     },
     next() {
       this.index = this.index + 1;
