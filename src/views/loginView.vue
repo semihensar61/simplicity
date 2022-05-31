@@ -76,7 +76,7 @@ form input {
     margin-top: .5rem;
     padding: .5rem 1rem;
     border: none;
-    background-color: fuchsia;
+    background-color: black;
     color: white;
     font-weight: bold;
     text-transform: capitalize;

@@ -34,9 +34,12 @@ export const USER_ORDERS = gql`
 `;
 
 export const RESTAURANT_QUERY = gql`
-  query restaurants {
-    restaurants(index: 0, limit: 10, delivery: false) {
+  query restaurants($limit:Int!, $index:Int!)  {
+    restaurants(limit: $limit, index: $index, delivery: false) {
       name
+      minOrderAmount
+      open
+      uid
     }
   }
 `;

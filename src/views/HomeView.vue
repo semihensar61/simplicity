@@ -25,19 +25,13 @@ import { mapGetters } from "vuex";
 
 import orders from "../components/orders.vue";
 import user from "../components/user.vue";
-import restaurant from "../components/restaurants.vue";
+import restaurants from "../components/restaurants.vue";
 export default {
   name: "Home",
-  computed: {
-    ...mapGetters(["restaurants"]),
-  },
   components: {
     orders,
     user,
-    restaurant,
-  },
-  mounted() {
-    this.$store.dispatch("setRestaurants");
+    restaurants,
   },
   methods: {
     openTab(tabName) {
