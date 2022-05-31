@@ -41,13 +41,6 @@ export default {
 };
 </script>
 <style scoped>
-.header {
-    display: flex;
-    justify-content: space-between;
-    background-color: fuchsia;
-    height: 25%;
-    padding: 1rem;
-}
 .app-name {
     font-weight: 900;
     font-size: 3rem;

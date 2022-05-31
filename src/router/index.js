@@ -31,7 +31,9 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   // Check if the user is logged i
   const isUserLoggedIn = store.getters.isAuthenticated;
+  console.log(isUserLoggedIn)
   if (to.matched.some((record) => record.meta.requiresAuth)) {
+    console.log(isUserLoggedIn)
     if (!isUserLoggedIn) {
       store.dispatch("logOut");
       next({

@@ -1,6 +1,10 @@
 import { apolloClient } from "@/vue-apollo";
-import { LOGGED_IN_USER, USER_ORDERS, RESTAURANT_QUERY } from "@/graphql/queries";
-import { LOGIN_USER} from "@/graphql/mutations";
+import {
+  LOGGED_IN_USER,
+  USER_ORDERS,
+  RESTAURANT_QUERY,
+} from "@/graphql/queries";
+import { LOGIN_USER } from "@/graphql/mutations";
 
 export default {
   async login({ commit, dispatch }, authDetails) {
@@ -18,24 +22,32 @@ export default {
     }
   },
   async setUser({ commit }) {
-    const { data } = await apolloClient.query({ query: LOGGED_IN_USER });
-    commit("LOGIN_USER", data.user);
+    try {
+      const { data } = await apolloClient.query({ query: LOGGED_IN_USER });
+      commit("LOGIN_USER", data.user);
+    } catch (e) {}
   },
   async setUserOrders({ commit }, index) {
-    const { data } = await apolloClient.query({
-      query: USER_ORDERS,
-      variables: { limit: 10, index: index },
-    });
-    commit("SET_ORDERS", data.pastOrders);
+    try {
+      const { data } = await apolloClient.query({
+        query: USER_ORDERS,
+        variables: { limit: 10, index: index },
+      });
+      commit("SET_ORDERS", data.pastOrders);
+    } catch (e) {}
   },
   async setRestaurants({ commit }) {
-    const { data } = await apolloClient.query({
-      query: RESTAURANT_QUERY,
-      variables: { limit: 10, index: 0 },
-    });
-    commit("SET_RESTAURANTS", data.restaurants);
+    try {
+      const { data } = await apolloClient.query({
+        query: RESTAURANT_QUERY,
+        variables: { limit: 10, index: 0 },
+      });
+      commit("SET_RESTAURANTS", data.restaurants);
+    } catch (e) {}
   },
-  async logOut ({ commit, dispatch }) {
-    commit('LOGOUT_USER')
-  }
+  async logOut({ commit, dispatch }) {
+    try {
+      commit("LOGOUT_USER");
+    } catch (e) {}
+  },
 };
