@@ -35,12 +35,12 @@ export default new Vuex.Store({
           mutation: LOGIN_USER,
           variables: { ...authDetails },
         });
-        const token = JSON.stringify(data.login.token);
+        const token = JSON.stringify(data.loginWithEmail.token);
         commit("SET_TOKEN", token);
         localStorage.setItem("apollo-token", token);
         dispatch("setUser");
       } catch (e) {
-        console.log(e);
+        console.log("errorlogin=>", e);
       }
     },
     async setUser({ commit }) {
